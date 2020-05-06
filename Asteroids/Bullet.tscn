@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Bullet.gd" type="Script" id=1]
+[ext_resource path="res://Wrapper.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sounds/Laser-weapon 2 - Sound effects Pack 2.ogg" type="AudioStream" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="SegmentShape2D" id=2]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.514793, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.828402, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 4 )
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 1024
+mass = 0.1
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+contacts_reported = 10
+contact_monitor = true
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 10, 0 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="OnHit" type="Particles2D" parent="."]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 5 )
+
+[node name="Wrapper" parent="." instance=ExtResource( 2 )]
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -2.0
+autoplay = true
+
+[node name="Trail" type="Node2D" parent="."]
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="warped" from="." to="." method="_on_Bullet_warped"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://LevelCounter.gd" type="Script" id=1]
+[ext_resource path="res://font/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 21
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 21
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 21
+font_data = ExtResource( 2 )
+
+[node name="LevelCounter" type="MarginContainer"]
+anchor_right = 1.0
+margin_bottom = 59.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1260.0
+margin_bottom = 45.0
+
+[node name="LevelText" type="Label" parent="HBoxContainer"]
+margin_top = 3.0
+margin_right = 60.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 1 )
+text = "Level"
+
+[node name="LevelNumber" type="Label" parent="HBoxContainer"]
+margin_left = 64.0
+margin_top = 3.0
+margin_right = 1042.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "1"
+
+[node name="HPLabel" type="Label" parent="HBoxContainer"]
+margin_left = 1046.0
+margin_top = 3.0
+margin_right = 1082.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 3 )
+text = "HP:"
+align = 2
+
+[node name="HP" type="Label" parent="HBoxContainer"]
+margin_left = 1086.0
+margin_top = 3.0
+margin_right = 1122.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 3 )
+text = "100"
+align = 2
+
+[node name="Separator" type="Label" parent="HBoxContainer"]
+margin_left = 1126.0
+margin_top = 3.0
+margin_right = 1176.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 50, 0 )
+custom_fonts/font = SubResource( 3 )
+align = 2
+
+[node name="QuitButton" type="Button" parent="HBoxContainer"]
+margin_left = 1180.0
+margin_right = 1240.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 3 )
+text = "Quit"
+flat = true
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="life_changed" from="." to="." method="_on_LevelCounter_life_changed"]
+[connection signal="update_level" from="." to="." method="_on_LevelCounter_update_level"]
+[connection signal="pressed" from="HBoxContainer/QuitButton" to="." method="_on_Button_pressed"]

@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Asteroid.gd" type="Script" id=1]
+[ext_resource path="res://Wrapper.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LifeBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sounds/Hit 1 - Sound effects Pack 2.ogg" type="AudioStream" id=4]
+[ext_resource path="res://sounds/Explosion 8 - Sound effects Pack 2.ogg" type="AudioStream" id=5]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.449704, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 15.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 3 )
+
+[node name="Asteroid" type="RigidBody2D"]
+collision_layer = 1024
+collision_mask = 1025
+mode = 2
+mass = 50.0
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, -30, -30, -10, -20, 20, 20, 20, 30, -10 )
+
+[node name="Wrapper" parent="." instance=ExtResource( 2 )]
+
+[node name="LifeBar" parent="." instance=ExtResource( 3 )]
+
+[node name="Explosion" type="Particles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 4 )
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="ExplodeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+[connection signal="hit" from="." to="." method="_on_Asteroid_hit"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

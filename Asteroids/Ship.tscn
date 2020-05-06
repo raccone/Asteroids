@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Ship.gd" type="Script" id=1]
+[ext_resource path="res://Wrapper.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LifeBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sounds/Random 1 - Sound effects Pack 2.ogg" type="AudioStream" id=4]
+[ext_resource path="res://sounds/Hit 2 - Sound effects Pack 2.ogg" type="AudioStream" id=5]
+[ext_resource path="res://sounds/Explosion 5 - Sound effects Pack 2.ogg" type="AudioStream" id=6]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.12426, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.00585938 ), -4.1286, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 1
+emission_sphere_radius = 5.0
+flag_disable_z = true
+spread = 35.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 35.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 1.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.745562, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.840237, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 1.0
+color_ramp = SubResource( 8 )
+
+[node name="Ship" type="RigidBody2D"]
+collision_mask = 0
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, -10, -10, 10, 10, 10 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, 5 )
+rotation = 1.5708
+emitting = false
+amount = 100
+local_coords = false
+process_material = SubResource( 6 )
+
+[node name="Wrapper" parent="." instance=ExtResource( 2 )]
+
+[node name="LifeBar" parent="." instance=ExtResource( 3 )]
+
+[node name="DeathAnim" type="Particles2D" parent="."]
+emitting = false
+amount = 200
+lifetime = 10.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 9 )
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Engine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -6.0
+pitch_scale = 0.3
+bus = "Engine"
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+pitch_scale = 0.5
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+pitch_scale = 0.7
+[connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
+[connection signal="hit" from="." to="." method="_on_Ship_hit"]
+[connection signal="timeout" from="ShootCooldown" to="." method="_on_ShootCooldown_timeout"]
