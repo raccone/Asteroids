@@ -51,6 +51,7 @@ margin_bottom = 70.0
 [node name="Cleared" parent="." instance=ExtResource( 4 )]
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -100.0

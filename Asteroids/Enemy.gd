@@ -84,7 +84,7 @@ func _on_Enemy_hit(damage):
 	HITSOUND_NODE.set_pitch_scale(rand_range(0.8, 1.2))
 	HITSOUND_NODE.play()
 	DAMAGETIMER_NODE.start()
-	lifePoints -= damage
+	lifePoints -= damage / 1.5
 	if lifePoints > 0:
 		CAMERA_NODE.shake(damage/3)
 		LIFEBAR_NODE.emit_signal("show",lifePoints)
