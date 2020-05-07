@@ -20,12 +20,14 @@ onready var GAME_NODE = get_node("Viewport/Camera2D/Game")
 onready var LEVELCOUNTER_NODE = $LevelCounter
 onready var CLEARED_NODE = $Cleared
 onready var VIEWPORT_NODE = $Viewport
+onready var CAMERA_NODE = $Viewport/Camera2D
 onready var STARS_NODE = $Viewport/Camera2D/Game/Stars
 onready var ASTEROIDS_NODE = $Viewport/Camera2D/Game/Asteroids
 onready var ENEMY_NODE = $Viewport/Camera2D/Game/Enemy
 
 
 func _ready():
+	CAMERA_NODE.set_zoom(Vector2.ONE * 0.01)
 	screen_width = get_viewport().size.x
 	screen_height = get_viewport().size.y
 	randomize()
@@ -79,6 +81,7 @@ func asteroid_place(times):
 
 
 func _process(delta):
+	CAMERA_NODE.set_zoom(Vector2(lerp(CAMERA_NODE.zoom.x, 1, 0.1), lerp(CAMERA_NODE.zoom.x, 1, 0.05)))
 #	if Input.is_action_just_pressed("camera_toggle"):
 #		var z = $Viewport/Camera2D.get_zoom().x
 #		if z == 1:

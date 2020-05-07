@@ -7,6 +7,8 @@ var delay_amount = 15
 var player
 var color = Color(1,0,0,0)
 
+onready var GLOBALS = get_node("/root/GlobalVariables")
+
 onready var COLOR_NODE = get_node("/root/Control/ColorRect")
 onready var CONTROL_NODE = get_node("/root/Control")
 onready var SHAKETIMER_NODE = $ShakeTimer
@@ -19,13 +21,15 @@ func _ready():
 
 
 func _process(delta):
-	var damping = ease(SHAKETIMER_NODE.time_left / SHAKETIMER_NODE.wait_time, EASE)
-	var alpha = ease(PLAYERTIMER_NODE.time_left / PLAYERTIMER_NODE.wait_time, EASE)/2
-	offset = Vector2(
-		rand_range(amplitude, -amplitude) * damping,
-		rand_range(amplitude, -amplitude) * damping)
-	COLOR_NODE.color = color
-	COLOR_NODE.color.a = alpha
+	if GLOBALS.screen_shake:
+		var damping = ease(SHAKETIMER_NODE.time_left / SHAKETIMER_NODE.wait_time, EASE)
+		offset = Vector2(
+			rand_range(amplitude, -amplitude) * damping,
+			rand_range(amplitude, -amplitude) * damping)
+	if GLOBALS.screen_flash:
+		var alpha = ease(PLAYERTIMER_NODE.time_left / PLAYERTIMER_NODE.wait_time, EASE)/2
+		COLOR_NODE.color = color
+		COLOR_NODE.color.a = alpha
 #	COLOR_NODE.color = Color(color.r, color.g, color.b, alpha)
 
 
