@@ -28,6 +28,9 @@ I have to check the internet for tips for making mobile version smoother and cor
 This might mean to rewrite big chunks of code.
 I'll see.
 
+**Update:** I added some Area2D nodes on scene's borders to detect changes in position of the asteroid, so the game won't draw every single useless asteroid copy offscreen.
+
+
 ## iOS port
 This might pretty well fall on the *Future improvements* category, but since I don't have a MacBook of any kind I need to check if this is possible and what will the result be, before buying anything.
 
