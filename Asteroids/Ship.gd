@@ -10,6 +10,8 @@ var is_shooting = false
 var rotation_amount = 2
 var acceleration = 5
 var max_velocity = 150
+var is_vulnerable = true
+var alpha = 1
 
 onready var LEVELCOUNTER_NODE = get_node("/root/Control/LevelCounter")
 onready var CLEARED_NODE = get_node("/root/Control/Cleared")
@@ -22,6 +24,7 @@ onready var DEATHANIM_NODE = $DeathAnim
 onready var SOUND_NODE = $Engine
 onready var HITSOUND_NODE = $HitSound
 onready var EXPLOSIONSOUND_NODE = $ExplosionSound
+onready var INVUL_NODE = $Invulnerability
 
 
 func _ready():
@@ -52,17 +55,20 @@ func _draw():
 		points.push_back(Vector2(0, 5))
 		points.push_back(Vector2(10, 10))
 		
-		draw_polygon(points, PoolColorArray([Color(1,1,1)]))
+		draw_polygon(points, PoolColorArray([Color(1,1,1,alpha)]))
 
 
 
 func _physics_process(delta):
+	if not is_vulnerable:
+		alpha = sin(INVUL_NODE.time_left / INVUL_NODE.wait_time * 70)
+		update()
 	angular_velocity = 0
 	PARTICLES_NODE.emitting = false
 	SOUND_NODE.stop()
 	if lifePoints > 0 and can_control:
 		if Input.is_action_pressed("ui_drain"):
-			damage_calc(1000)
+			damage_calc(100)
 		if Input.is_action_pressed("ui_right"):
 			angular_velocity = rotation_amount
 		if Input.is_action_pressed("ui_left"):
@@ -95,6 +101,10 @@ func game_over():
 
 
 func damage_calc(dmg):
+	if not is_vulnerable:
+		return
+	is_vulnerable = false
+	INVUL_NODE.start()
 	HITSOUND_NODE.play(0)
 	CAMERA_NODE.player_hit(dmg)
 	lifePoints -= dmg
@@ -116,3 +126,9 @@ func _on_Ship_hit(damage):
 
 func _on_ShootCooldown_timeout():
 	is_shooting = false
+
+
+func _on_Invulnerability_timeout():
+	alpha = 1
+	is_vulnerable = true
+	update()
