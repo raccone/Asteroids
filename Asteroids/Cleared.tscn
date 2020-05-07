@@ -1,19 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Cleared.gd" type="Script" id=1]
-[ext_resource path="res://font/Nunito_font.tres" type="DynamicFontData" id=2]
+[ext_resource path="res://font/TextFont.tres" type="DynamicFont" id=2]
 
-[sub_resource type="DynamicFont" id=1]
-size = 64
-font_data = ExtResource( 2 )
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://font/Quicksand-Regular.ttf"
 
 [sub_resource type="DynamicFont" id=2]
-size = 36
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 36
-font_data = ExtResource( 2 )
+size = 40
+font_data = SubResource( 1 )
 
 [node name="Cleared" type="MarginContainer"]
 anchor_right = 1.0
@@ -53,36 +48,36 @@ custom_constants/separation = 50
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 110.0
+margin_top = 144.0
 margin_right = 1080.0
-margin_bottom = 198.0
+margin_bottom = 194.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Level Cleared"
 align = 1
 valign = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 482.0
-margin_top = 248.0
-margin_right = 598.0
-margin_bottom = 304.0
+margin_left = 491.0
+margin_top = 244.0
+margin_right = 588.0
+margin_bottom = 285.0
 size_flags_horizontal = 4
 size_flags_vertical = 5
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 2 )
 action_mode = 0
 text = "Retry?"
 flat = true
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
-margin_left = 500.0
-margin_top = 354.0
-margin_right = 580.0
-margin_bottom = 410.0
+margin_left = 507.0
+margin_top = 335.0
+margin_right = 572.0
+margin_bottom = 376.0
 size_flags_horizontal = 4
 size_flags_vertical = 5
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 action_mode = 0
 text = "Quit"
 flat = true

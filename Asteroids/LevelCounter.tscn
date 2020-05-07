@@ -1,17 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://LevelCounter.gd" type="Script" id=1]
 [ext_resource path="res://font/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-size = 21
-font_data = ExtResource( 2 )
+[ext_resource path="res://font/TextFont.tres" type="DynamicFont" id=3]
 
 [sub_resource type="DynamicFont" id=2]
-size = 21
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=3]
 size = 21
 font_data = ExtResource( 2 )
 
@@ -31,56 +24,56 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1260.0
-margin_bottom = 45.0
+margin_bottom = 61.0
 
 [node name="LevelText" type="Label" parent="HBoxContainer"]
 margin_top = 3.0
-margin_right = 60.0
-margin_bottom = 22.0
-custom_fonts/font = SubResource( 1 )
+margin_right = 68.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 3 )
 text = "Level"
 
 [node name="LevelNumber" type="Label" parent="HBoxContainer"]
-margin_left = 64.0
+margin_left = 72.0
 margin_top = 3.0
-margin_right = 1042.0
-margin_bottom = 22.0
+margin_right = 1024.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "1"
 
 [node name="HPLabel" type="Label" parent="HBoxContainer"]
-margin_left = 1046.0
+margin_left = 1028.0
 margin_top = 3.0
-margin_right = 1082.0
-margin_bottom = 22.0
-custom_fonts/font = SubResource( 3 )
+margin_right = 1070.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 3 )
 text = "HP:"
 align = 2
 
 [node name="HP" type="Label" parent="HBoxContainer"]
-margin_left = 1086.0
+margin_left = 1074.0
 margin_top = 3.0
-margin_right = 1122.0
-margin_bottom = 22.0
-custom_fonts/font = SubResource( 3 )
+margin_right = 1117.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 3 )
 text = "100"
 align = 2
 
 [node name="Separator" type="Label" parent="HBoxContainer"]
-margin_left = 1126.0
-margin_top = 3.0
-margin_right = 1176.0
-margin_bottom = 22.0
+margin_left = 1121.0
+margin_top = 11.0
+margin_right = 1171.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 50, 0 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 align = 2
 
 [node name="QuitButton" type="Button" parent="HBoxContainer"]
-margin_left = 1180.0
+margin_left = 1175.0
 margin_right = 1240.0
-margin_bottom = 25.0
-custom_fonts/font = SubResource( 3 )
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 3 )
 text = "Quit"
 flat = true
 
