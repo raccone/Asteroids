@@ -64,6 +64,7 @@ process_material = SubResource( 5 )
 stream = ExtResource( 3 )
 volume_db = -6.0
 autoplay = true
+bus = "SFX"
 
 [node name="Trail" type="Node2D" parent="."]
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

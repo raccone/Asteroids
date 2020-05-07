@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Asteroids"
-run/main_scene="res://Viewport.tscn"
+run/main_scene="res://MainScene.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GlobalVariables="*res://GlobalVariables.gd"
 
 [display]
 
