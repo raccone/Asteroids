@@ -1,0 +1,189 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://font/TextFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Options.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://font/Quicksand-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = SubResource( 1 )
+
+[node name="Options" type="VBoxContainer"]
+margin_right = 280.0
+margin_bottom = 470.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 280.0
+margin_bottom = 113.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 2 )
+text = "Options"
+align = 1
+valign = 1
+
+[node name="VolumeContainer" type="VBoxContainer" parent="."]
+margin_top = 117.0
+margin_right = 280.0
+margin_bottom = 239.0
+size_flags_vertical = 3
+
+[node name="Volume" type="Label" parent="VolumeContainer"]
+margin_right = 280.0
+margin_bottom = 35.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Volume"
+align = 1
+valign = 2
+
+[node name="Sounds" type="HBoxContainer" parent="VolumeContainer"]
+margin_top = 39.0
+margin_right = 280.0
+margin_bottom = 64.0
+size_flags_vertical = 3
+
+[node name="SoundsLabel" type="Label" parent="VolumeContainer/Sounds"]
+margin_right = 67.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 3 )
+text = "Sounds"
+
+[node name="SoundsSlider" type="HSlider" parent="VolumeContainer/Sounds"]
+margin_left = 80.0
+margin_right = 280.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 10
+size_flags_vertical = 1
+value = 100.0
+rounded = true
+
+[node name="Music" type="HBoxContainer" parent="VolumeContainer"]
+margin_top = 68.0
+margin_right = 280.0
+margin_bottom = 93.0
+size_flags_vertical = 3
+
+[node name="MusicLabel" type="Label" parent="VolumeContainer/Music"]
+margin_right = 51.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 3 )
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="VolumeContainer/Music"]
+margin_left = 80.0
+margin_right = 280.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 10
+size_flags_vertical = 1
+value = 100.0
+rounded = true
+
+[node name="Master" type="HBoxContainer" parent="VolumeContainer"]
+margin_top = 97.0
+margin_right = 280.0
+margin_bottom = 122.0
+size_flags_vertical = 3
+
+[node name="MasterLabel" type="Label" parent="VolumeContainer/Master"]
+margin_right = 64.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 3 )
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="VolumeContainer/Master"]
+margin_left = 80.0
+margin_right = 280.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 10
+size_flags_vertical = 1
+value = 100.0
+rounded = true
+
+[node name="VFXContainer" type="VBoxContainer" parent="."]
+margin_top = 243.0
+margin_right = 280.0
+margin_bottom = 366.0
+size_flags_vertical = 3
+
+[node name="VFX" type="Label" parent="VFXContainer"]
+margin_right = 280.0
+margin_bottom = 35.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "VFX"
+align = 1
+valign = 2
+
+[node name="ScreenShake" type="HBoxContainer" parent="VFXContainer"]
+margin_top = 39.0
+margin_right = 280.0
+margin_bottom = 79.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShakeLabel" type="Label" parent="VFXContainer/ScreenShake"]
+margin_top = 7.0
+margin_right = 141.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 3 )
+text = "Screen Shaking"
+
+[node name="ShakeButton" type="CheckButton" parent="VFXContainer/ScreenShake"]
+margin_left = 204.0
+margin_right = 280.0
+margin_bottom = 40.0
+size_flags_horizontal = 10
+align = 2
+
+[node name="ScreenFlashing" type="HBoxContainer" parent="VFXContainer"]
+margin_top = 83.0
+margin_right = 280.0
+margin_bottom = 123.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FlashLabel" type="Label" parent="VFXContainer/ScreenFlashing"]
+margin_top = 7.0
+margin_right = 144.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 3 )
+text = "Screen Flashing"
+
+[node name="FlashButton" type="CheckButton" parent="VFXContainer/ScreenFlashing"]
+margin_left = 204.0
+margin_right = 280.0
+margin_bottom = 40.0
+size_flags_horizontal = 10
+align = 2
+
+[node name="Back" type="Button" parent="."]
+margin_top = 370.0
+margin_right = 280.0
+margin_bottom = 470.0
+rect_min_size = Vector2( 0, 100 )
+custom_fonts/font = ExtResource( 1 )
+text = "Back"
+flat = true
+[connection signal="value_changed" from="VolumeContainer/Sounds/SoundsSlider" to="." method="_on_SoundsSlider_value_changed"]
+[connection signal="value_changed" from="VolumeContainer/Music/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="VolumeContainer/Master/MasterSlider" to="." method="_on_MasterSlider_value_changed"]
+[connection signal="toggled" from="VFXContainer/ScreenShake/ShakeButton" to="." method="_on_ShakeButton_toggled"]
+[connection signal="toggled" from="VFXContainer/ScreenFlashing/FlashButton" to="." method="_on_FlashButton_toggled"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

@@ -4,7 +4,7 @@
 [ext_resource path="res://Viewport.gd" type="Script" id=2]
 [ext_resource path="res://AndroidUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Cleared.tscn" type="PackedScene" id=4]
-[ext_resource path="res://LevelCounter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://MenuTopBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Camera2D.gd" type="Script" id=6]
 
 [node name="Control" type="ViewportContainer"]
@@ -46,10 +46,9 @@ one_shot = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="LevelCounter" parent="." instance=ExtResource( 5 )]
-margin_bottom = 70.0
-
 [node name="Cleared" parent="." instance=ExtResource( 4 )]
+
+[node name="LevelCounter" parent="." instance=ExtResource( 5 )]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
