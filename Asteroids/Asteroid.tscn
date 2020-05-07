@@ -42,7 +42,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+[node name="MainCollision" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 0, -30, -30, -10, -20, 20, 20, 20, 30, -10 )
 
 [node name="Wrapper" parent="." instance=ExtResource( 2 )]

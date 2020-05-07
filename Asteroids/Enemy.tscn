@@ -41,7 +41,7 @@ polygon = PoolVector2Array( 0, -10, -20, 0, 0, 10, 20, 0 )
 [node name="LifeBar" parent="." instance=ExtResource( 3 )]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 autostart = true
 
 [node name="Explosion" type="Particles2D" parent="."]

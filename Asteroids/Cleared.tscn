@@ -1,17 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Cleared.gd" type="Script" id=1]
-[ext_resource path="res://font/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://font/Nunito_font.tres" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 42
+size = 64
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 31
-extra_spacing_top = 10
-extra_spacing_bottom = 10
-extra_spacing_space = 10
+size = 36
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 36
 font_data = ExtResource( 2 )
 
 [node name="Cleared" type="MarginContainer"]
@@ -52,9 +53,9 @@ custom_constants/separation = 50
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 189.0
+margin_top = 110.0
 margin_right = 1080.0
-margin_bottom = 226.0
+margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
@@ -63,10 +64,10 @@ align = 1
 valign = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 480.0
-margin_top = 276.0
-margin_right = 600.0
-margin_bottom = 330.0
+margin_left = 482.0
+margin_top = 248.0
+margin_right = 598.0
+margin_bottom = 304.0
 size_flags_horizontal = 4
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 2 )
@@ -75,14 +76,13 @@ text = "Retry?"
 flat = true
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
-visible = false
-margin_left = 498.0
-margin_top = 328.0
-margin_right = 582.0
-margin_bottom = 382.0
+margin_left = 500.0
+margin_top = 354.0
+margin_right = 580.0
+margin_bottom = 410.0
 size_flags_horizontal = 4
 size_flags_vertical = 5
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 action_mode = 0
 text = "Quit"
 flat = true

@@ -62,7 +62,7 @@ process_material = SubResource( 5 )
 
 [node name="Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -2.0
+volume_db = -6.0
 autoplay = true
 
 [node name="Trail" type="Node2D" parent="."]

@@ -5,6 +5,13 @@ signal hit
 var screen_w
 var screen_h
 
+var borders = {
+	"left": false,
+	"right": false,
+	"top": false,
+	"bottom": false
+}
+
 var color = Color(1, 1, 1)
 var lifePoints = 100.00
 
@@ -14,7 +21,7 @@ var min_velocity = 5
 var max_velocity = 20
 
 onready var CAMERA_NODE = get_node("/root/Control/Viewport/Camera2D")
-onready var COLLISION_NODE = $CollisionShape2D
+onready var COLLISION_NODE = $MainCollision
 onready var LIFEBAR_NODE = $LifeBar
 onready var EXPLOSION_NODE = $Explosion
 onready var DEATHTIMER_NODE = $DeathTimer
@@ -55,14 +62,27 @@ func _draw():
 	EXPLOSION_NODE.scale = Vector2(scl,scl)
 	
 	draw_shape(Vector2.ZERO)
-	draw_shape(Vector2(screen_w, 0))
-	draw_shape(Vector2(-screen_w, 0))
-	draw_shape(Vector2(screen_w, screen_h))
-	draw_shape(Vector2(-screen_w, screen_h))
-	draw_shape(Vector2(0, screen_h))
-	draw_shape(Vector2(0, -screen_h))
-	draw_shape(Vector2(screen_w, -screen_h))
-	draw_shape(Vector2(screen_w, -screen_h))
+	if borders["left"]:
+		draw_shape(Vector2(screen_w, 0))
+	if borders["right"]:
+		draw_shape(Vector2(-screen_w, 0))
+	if borders["top"]:
+		draw_shape(Vector2(0, screen_h))
+	if borders["bottom"]:
+		draw_shape(Vector2(0, -screen_h))
+	if borders["left"] and borders["top"]:
+		draw_shape(Vector2(screen_w, screen_h))
+	if borders["right"] and borders["top"]:
+		draw_shape(Vector2(-screen_w, screen_h))
+	if borders["left"] and borders["bottom"]:
+		draw_shape(Vector2(screen_w, -screen_h))
+	if borders["right"] and borders["bottom"]:
+		draw_shape(Vector2(-screen_w, -screen_h))
+
+
+func update_borders(border, is_overlapping):
+	borders[border] = is_overlapping
+	update()
 
 
 func _physics_process(delta):
@@ -87,7 +107,6 @@ func _on_Asteroid_hit(damage):
 func explode():
 	EXPLODESOUND_NODE.set_pitch_scale(1/scl)
 	EXPLODESOUND_NODE.play()
-#	CAMERA_NODE.shake(5*scl)
 	CAMERA_NODE.explosion(5*scl)
 	update()
 	LIFEBAR_NODE.hide()

@@ -32,8 +32,6 @@ func _ready():
 	level = 1
 	LEVELCOUNTER_NODE.emit_signal("update_level",level)
 	LEVELCOUNTER_NODE.show()
-#	screen_width = OS.get_window_size().x
-#	screen_height = OS.get_window_size().y
 	var part_mat = STARS_NODE.process_material
 	part_mat.emission_box_extents = Vector3(screen_width, screen_height, 0)
 	STARS_NODE.set_process_material(part_mat)
@@ -81,6 +79,12 @@ func asteroid_place(times):
 
 
 func _process(delta):
+#	if Input.is_action_just_pressed("camera_toggle"):
+#		var z = $Viewport/Camera2D.get_zoom().x
+#		if z == 1:
+#			$Viewport/Camera2D.set_zoom(Vector2(3,3))
+#		else:
+#			$Viewport/Camera2D.set_zoom(Vector2(1,1))
 	if ASTEROIDS_NODE.get_child_count() > 0 and ship.can_control:
 		for ast in ASTEROIDS_NODE.get_children():
 			if ast.lifePoints > 0:
