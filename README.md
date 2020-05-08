@@ -18,8 +18,8 @@ Here's the list.
 The game is far from finished, since I have to add a lot other small funcionality and correct some bugs and improve performances.
 - [ ] more asteroids diversity
 - [ ] shattering asteroid
-- [ ] following camera
-- [ ] main menu
+- [ ] ~~following camera~~
+- [x] main menu
 - [ ] grater OS compatibility
 
 ## Android port
