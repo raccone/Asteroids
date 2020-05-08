@@ -10,6 +10,7 @@ font_path = "res://font/Quicksand-Regular.ttf"
 
 [sub_resource type="DynamicFont" id=2]
 size = 100
+use_filter = true
 font_data = SubResource( 1 )
 
 [node name="Main Menu" type="Control"]
@@ -24,6 +25,9 @@ __meta__ = {
 anchor_right = 2.0
 anchor_bottom = 1.0
 color = Color( 0.121569, 0.121569, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Stars" parent="." instance=ExtResource( 1 )]
 
@@ -89,15 +93,16 @@ flat = true
 anchor_left = 1.0
 anchor_right = 2.0
 anchor_bottom = 1.0
-margin_left = 500.0
+margin_left = 400.0
 margin_top = 150.0
-margin_right = -500.0
+margin_right = -400.0
 margin_bottom = -100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Options" parent="OptionsContainer" instance=ExtResource( 4 )]
+margin_right = 480.0
 [connection signal="pressed" from="MenuContainer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="MenuContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="MenuContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

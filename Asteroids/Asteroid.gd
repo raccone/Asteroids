@@ -20,7 +20,7 @@ var scl = 1
 var min_velocity = 5
 var max_velocity = 20
 
-onready var CAMERA_NODE = get_node("/root/Control/Viewport/Camera2D")
+onready var CAMERA_NODE = get_node("/root/Control/Camera2D")
 onready var COLLISION_NODE = $MainCollision
 onready var LIFEBAR_NODE = $LifeBar
 onready var EXPLOSION_NODE = $Explosion
@@ -32,8 +32,8 @@ onready var EXPLODESOUND_NODE = $ExplodeSound
 
 func _ready():
 	lifePoints *= scl
-	screen_w = get_viewport().size.x
-	screen_h = get_viewport().size.y
+	screen_w = ProjectSettings.get_setting("display/window/size/width")
+	screen_h = ProjectSettings.get_setting("display/window/size/height")
 
 
 func draw_shape(x: Vector2):

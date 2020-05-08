@@ -1,4 +1,4 @@
-extends ViewportContainer
+extends Control
 
 var Asteroid = load("res://Asteroid.tscn")
 var Ship = load("res://Ship.tscn")
@@ -16,20 +16,19 @@ var ship
 signal new_game
 signal next_level
 
-onready var GAME_NODE = get_node("Viewport/Camera2D/Game")
-onready var LEVELCOUNTER_NODE = $LevelCounter
-onready var CLEARED_NODE = $Cleared
-onready var VIEWPORT_NODE = $Viewport
-onready var CAMERA_NODE = $Viewport/Camera2D
-onready var STARS_NODE = $Viewport/Camera2D/Game/Stars
-onready var ASTEROIDS_NODE = $Viewport/Camera2D/Game/Asteroids
-onready var ENEMY_NODE = $Viewport/Camera2D/Game/Enemy
+onready var CAMERA_NODE = $Camera2D
+onready var GAME_NODE = $Camera2D/Game
+onready var STARS_NODE = $Camera2D/Game/Stars
+onready var ASTEROIDS_NODE = $Camera2D/Game/Asteroids
+onready var ENEMY_NODE = $Camera2D/Game/Enemy
+onready var LEVELCOUNTER_NODE = $Camera2D/GuiCanvas/MenuTopBar
+onready var CLEARED_NODE = $Camera2D/GuiCanvas/Cleared
 
 
 func _ready():
 	CAMERA_NODE.set_zoom(Vector2.ONE * 0.01)
-	screen_width = get_viewport().size.x
-	screen_height = get_viewport().size.y
+	screen_width = ProjectSettings.get_setting("display/window/size/width")
+	screen_height = ProjectSettings.get_setting("display/window/size/height")
 	randomize()
 	level = 1
 	LEVELCOUNTER_NODE.emit_signal("update_level",level)

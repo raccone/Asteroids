@@ -4,7 +4,7 @@ signal cleared
 signal over
 
 onready var CONTROL_NODE = get_node("/root/Control")
-onready var ENEMY_NODE = get_node("/root/Control/Viewport/Camera2D/Game/Enemy")
+onready var ENEMY_NODE = get_node("/root/Control/Camera2D/Game/Enemy")
 onready var BUTTON_NODE = $VBoxContainer/Button
 onready var QUIT_NODE = $VBoxContainer/Quit
 onready var LABEL_NODE = $VBoxContainer/Label

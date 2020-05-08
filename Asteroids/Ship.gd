@@ -13,9 +13,9 @@ var max_velocity = 150
 var is_vulnerable = true
 var alpha = 1
 
-onready var LEVELCOUNTER_NODE = get_node("/root/Control/LevelCounter")
-onready var CLEARED_NODE = get_node("/root/Control/Cleared")
-onready var CAMERA_NODE = get_node("/root/Control/Viewport/Camera2D")
+onready var LEVELCOUNTER_NODE = get_node("/root/Control/Camera2D/GuiCanvas/MenuTopBar")
+onready var CLEARED_NODE = get_node("/root/Control/Camera2D/GuiCanvas/Cleared")
+onready var CAMERA_NODE = get_node("/root/Control/Camera2D")
 onready var LIFEBAR_NODE = $LifeBar
 onready var COLLISION_NODE = $CollisionPolygon2D
 onready var PARTICLES_NODE = $Particles2D

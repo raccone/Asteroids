@@ -9,15 +9,17 @@ var color = Color(1,0,0,0)
 
 onready var GLOBALS = get_node("/root/GlobalVariables")
 
-onready var COLOR_NODE = get_node("/root/Control/ColorRect")
 onready var CONTROL_NODE = get_node("/root/Control")
+onready var COLOR_NODE = $GuiCanvas/ColorRect
 onready var SHAKETIMER_NODE = $ShakeTimer
 onready var PLAYERTIMER_NODE = $PlayerTimer
 
 
 func _ready():
 	COLOR_NODE.hide()
-	position = get_viewport().size/2
+	var screen_width = ProjectSettings.get_setting("display/window/size/width")
+	var screen_height = ProjectSettings.get_setting("display/window/size/height")
+	position = Vector2(screen_width/2, screen_height/2)
 
 
 func _process(delta):

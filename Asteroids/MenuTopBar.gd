@@ -11,9 +11,11 @@ onready var TWEEN_NODE = $LevelCounter/Tween
 onready var PAUSE_NODE = $PauseMenu
 onready var OPTIONS_NODE = $PauseMenu/Options
 onready var PAUSE_MENU_NODE = $PauseMenu/VBoxContainer
+onready var BLUR_NODE = $Blur
 
 
 func _ready():
+	BLUR_NODE.hide()
 	PAUSE_NODE.hide()
 
 
@@ -41,16 +43,19 @@ func _on_MenuTopBar_life_changed(lifePoints):
 
 
 func _on_PauseButton_pressed():
+	BLUR_NODE.show()
 	PAUSE_NODE.show()
 	get_tree().paused = true
 
 
 func _on_Resume_pressed():
+	BLUR_NODE.hide()
 	PAUSE_NODE.hide()
 	get_tree().paused = false
 
 
 func _on_MainMenu_pressed():
+	BLUR_NODE.hide()
 	PAUSE_NODE.hide()
 	get_tree().paused = false
 	get_tree().change_scene("res://MainScene.tscn")

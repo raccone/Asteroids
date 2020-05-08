@@ -15,8 +15,8 @@ signal hit
 signal stop
 
 onready var CONTROL_NODE = get_node("/root/Control")
-onready var BULLETS_NODE = get_node("/root/Control/Viewport/Camera2D/Game/Bullets")
-onready var CAMERA_NODE = get_node("/root/Control/Viewport/Camera2D")
+onready var BULLETS_NODE = get_node("/root/Control/Camera2D/Game/Bullets")
+onready var CAMERA_NODE = get_node("/root/Control/Camera2D")
 onready var LIFEBAR_NODE = $LifeBar
 onready var TIMER_NODE = $Timer
 onready var DAMAGETIMER_NODE = $DamageTimer

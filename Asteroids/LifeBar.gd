@@ -20,8 +20,8 @@ onready var TIMER_NODE = $Timer
 
 
 func _ready():
-	screen_w = get_viewport().size.x
-	screen_h = get_viewport().size.y
+	screen_w = ProjectSettings.get_setting("display/window/size/width")
+	screen_h = ProjectSettings.get_setting("display/window/size/height")
 	hide()
 	length = get_parent().lifePoints
 	pos = get_parent().global_position

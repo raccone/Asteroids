@@ -23,6 +23,6 @@ func warp(screen_width, screen_height):
 
 
 func _process(delta):
-	var screen_width = get_viewport().size.x
-	var screen_height = get_viewport().size.y
+	var screen_width = ProjectSettings.get_setting("display/window/size/width")
+	var screen_height = ProjectSettings.get_setting("display/window/size/height")
 	warp(screen_width, screen_height)

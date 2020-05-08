@@ -4,12 +4,14 @@ var Asteroid = load("res://Asteroid.tscn")
 
 var camera_offset = 0
 
-onready var CAMERA_NODE = get_node("/root/MainScene/Viewport/Camera2D")
+onready var CAMERA_NODE = get_node("/root/MainScene/Camera2D")
 onready var STARS_NODE = $Stars
 
 
 func _ready():
-	var camera_position = get_viewport().size / 2
+	var screen_w = ProjectSettings.get_setting("display/window/size/width")
+	var screen_h = ProjectSettings.get_setting("display/window/size/height")
+	var camera_position = Vector2(screen_w, screen_h) / 2
 	CAMERA_NODE.position = camera_position
 	var rect = STARS_NODE.visibility_rect.grow_individual(0,0,1280,0)
 	STARS_NODE.visibility_rect = rect
