@@ -5,6 +5,11 @@ signal show
 var screen_w
 var screen_h
 
+var left
+var right
+var white
+var thickness
+
 var borders = {
 	"left": true,
 	"right": true,
@@ -25,26 +30,30 @@ func _ready():
 	hide()
 	length = get_parent().lifePoints
 	pos = get_parent().global_position
+	left = Vector2(-length/4, -50)
+	right = Vector2(length/4, -50)
+	white = Color(1, 1, 1)
+	thickness = 5
 
 
 func _draw():
-	draw_line(Vector2(-length/4,-50), Vector2(length/4,-50), Color(255, 255, 255), 5)
+	draw_line(left, right, white, thickness)
 	if borders["left"]:
-		draw_line(Vector2(-length/4,-50)+Vector2(screen_w,0), Vector2(length/4,-50)+Vector2(screen_w,0), Color(255, 255, 255), 5)
+		draw_line(left+Vector2(screen_w,0), right+Vector2(screen_w,0), white, thickness)
 	if borders["right"]:
-		draw_line(Vector2(-length/4,-50)+Vector2(-screen_w,0), Vector2(length/4,-50)+Vector2(-screen_w,0), Color(255, 255, 255), 5)
+		draw_line(left+Vector2(-screen_w,0), right+Vector2(-screen_w,0), white, thickness)
 	if borders["top"]:
-		draw_line(Vector2(-length/4,-50)+Vector2(0,screen_h), Vector2(length/4,-50)+Vector2(0,screen_h), Color(255, 255, 255), 5)
+		draw_line(left+Vector2(0,screen_h), right+Vector2(0,screen_h), white, thickness)
 	if borders["bottom"]:
-		draw_line(Vector2(-length/4,-50)+Vector2(0,-screen_h), Vector2(length/4,-50)+Vector2(0,-screen_h), Color(255, 255, 255), 5)
+		draw_line(left+Vector2(0,-screen_h), right+Vector2(0,-screen_h), white, thickness)
 	if borders["left"] and borders["top"]:
-		draw_line(Vector2(-length/4,-50)+Vector2(screen_w,screen_h), Vector2(length/4,-50)+Vector2(screen_w,screen_h), Color(255, 255, 255), 5)
+		draw_line(left+Vector2(screen_w,screen_h), right+Vector2(screen_w,screen_h), white, thickness)
 	if borders["right"] and borders["top"]:
-		draw_line(Vector2(-length/4,-50)+Vector2(-screen_w,screen_h), Vector2(length/4,-50)+Vector2(-screen_w,screen_h), Color(255, 255, 255), 5)
+		draw_line(left+Vector2(-screen_w,screen_h), right+Vector2(-screen_w,screen_h), white, thickness)
 	if borders["left"] and borders["bottom"]:
-		draw_line(Vector2(-length/4,-50)+Vector2(screen_w,-screen_h), Vector2(length/4,-50)+Vector2(screen_w,-screen_h), Color(255, 255, 255), 5)
+		draw_line(left+Vector2(screen_w,-screen_h), right+Vector2(screen_w,-screen_h), white, thickness)
 	if borders["right"] and borders["bottom"]:
-		draw_line(Vector2(-length/4,-50)+Vector2(-screen_w,-screen_h), Vector2(length/4,-50)+Vector2(-screen_w,-screen_h), Color(255, 255, 255), 5)
+		draw_line(left+Vector2(-screen_w,-screen_h), right+Vector2(-screen_w,-screen_h), white, thickness)
 
 
 func _process(delta):
