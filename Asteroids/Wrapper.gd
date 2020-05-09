@@ -4,7 +4,8 @@ onready var parent = get_parent()
 
 
 func emit(s):
-	parent.emit_signal(s)
+	if len(parent.get_signal_connection_list(s)) > 0:
+		parent.emit_signal(s)
 
 
 func warp(screen_width, screen_height):

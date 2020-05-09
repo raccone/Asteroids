@@ -21,7 +21,7 @@ func _ready():
 
 
 func _process(delta):
-	CAMERA_NODE.set_offset(Vector2(lerp(CAMERA_NODE.get_offset().x, camera_offset, 0.07), 0))
+	CAMERA_NODE.set_offset(Vector2(lerp(CAMERA_NODE.get_offset().x, camera_offset, delta*4), 0))
 	pass
 
 

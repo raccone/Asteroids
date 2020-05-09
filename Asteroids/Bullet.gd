@@ -33,7 +33,7 @@ func _ready():
 	AUDIO_NODE.play(0)
 
 
-func _process(delta):
+func _physics_process(delta):
 	var point = global_position
 	trail.add_point(point)
 	for child in TRAIL_NODE.get_children():

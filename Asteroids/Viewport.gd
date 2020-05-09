@@ -68,7 +68,7 @@ func spawn_enemy(level):
 func asteroid_place(times):
 	for i in range(0,clamp(times,1,15)):
 		var random = Vector2(rand_range(0, screen_width),rand_range(0, screen_height))
-		while random.distance_to(ship.position) < 40:
+		while random.distance_to(ship.position) < 100:
 			random = Vector2(rand_range(0, screen_width),rand_range(0, screen_height))
 		var asteroid = Asteroid.instance()
 		ASTEROIDS_NODE.add_child(asteroid)
@@ -82,11 +82,7 @@ func asteroid_place(times):
 func _process(delta):
 	CAMERA_NODE.set_zoom(Vector2(lerp(CAMERA_NODE.zoom.x, 1, 0.1), lerp(CAMERA_NODE.zoom.x, 1, 0.05)))
 #	if Input.is_action_just_pressed("camera_toggle"):
-#		var z = $Viewport/Camera2D.get_zoom().x
-#		if z == 1:
-#			$Viewport/Camera2D.set_zoom(Vector2(3,3))
-#		else:
-#			$Viewport/Camera2D.set_zoom(Vector2(1,1))
+#		asteroid_place(1)
 	if ASTEROIDS_NODE.get_child_count() > 0 and ship.can_control:
 		for ast in ASTEROIDS_NODE.get_children():
 			if ast.lifePoints > 0:

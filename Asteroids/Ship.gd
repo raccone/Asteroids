@@ -16,6 +16,7 @@ var alpha = 1
 onready var LEVELCOUNTER_NODE = get_node("/root/Control/Camera2D/GuiCanvas/MenuTopBar")
 onready var CLEARED_NODE = get_node("/root/Control/Camera2D/GuiCanvas/Cleared")
 onready var CAMERA_NODE = get_node("/root/Control/Camera2D")
+onready var BULLET_NODE = get_node("/root/Control/Camera2D/Game/Bullets")
 onready var LIFEBAR_NODE = $LifeBar
 onready var COLLISION_NODE = $CollisionPolygon2D
 onready var PARTICLES_NODE = $Particles2D
@@ -67,8 +68,8 @@ func _physics_process(delta):
 	PARTICLES_NODE.emitting = false
 	SOUND_NODE.stop()
 	if lifePoints > 0 and can_control:
-		if Input.is_action_pressed("ui_drain"):
-			damage_calc(100)
+#		if Input.is_action_pressed("ui_drain"):
+#			damage_calc(100)
 		if Input.is_action_pressed("ui_right"):
 			angular_velocity = rotation_amount
 		if Input.is_action_pressed("ui_left"):
@@ -83,7 +84,7 @@ func _physics_process(delta):
 			var knockback = Vector2(cos(rotation - PI/2), sin(rotation - PI/2)).normalized() * -acceleration
 			linear_velocity += knockback
 			var bullet = Bullet.instance()
-			get_parent().get_node("./Bullets").add_child(bullet)
+			BULLET_NODE.add_child(bullet)
 			bullet.position = position
 			bullet.rotation = rotation - PI/2
 			bullet.set_linear_velocity(Vector2(400, 0).rotated(rotation - PI/2))

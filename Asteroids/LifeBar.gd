@@ -30,13 +30,13 @@ func _ready():
 	hide()
 	length = get_parent().lifePoints
 	pos = get_parent().global_position
-	left = Vector2(-length/4, -50)
-	right = Vector2(length/4, -50)
 	white = Color(1, 1, 1)
 	thickness = 5
 
 
 func _draw():
+	left = Vector2(-length / 3, -50)
+	right = Vector2(length / 3, -50)
 	draw_line(left, right, white, thickness)
 	if borders["left"]:
 		draw_line(left+Vector2(screen_w,0), right+Vector2(screen_w,0), white, thickness)
@@ -69,7 +69,7 @@ func _on_Timer_timeout():
 
 func _on_LifeBar_show(new_length):
 	show()
-	TWEEN_NODE.interpolate_property(self, "length", length, new_length, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	TWEEN_NODE.interpolate_property(self, "length", length, new_length, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	if not TWEEN_NODE.is_active():
 		TWEEN_NODE.start()
 	TIMER_NODE.start()
