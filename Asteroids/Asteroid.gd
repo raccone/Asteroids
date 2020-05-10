@@ -105,7 +105,7 @@ func _on_Asteroid_hit(damage):
 
 
 func explode():
-	EXPLODESOUND_NODE.set_pitch_scale(1/scl)
+	EXPLODESOUND_NODE.set_pitch_scale(0.7/scl)
 	EXPLODESOUND_NODE.play()
 	CAMERA_NODE.explosion(5*scl)
 	update()

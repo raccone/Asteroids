@@ -43,9 +43,15 @@ func _on_MenuTopBar_life_changed(lifePoints):
 
 
 func _on_PauseButton_pressed():
-	BLUR_NODE.show()
-	PAUSE_NODE.show()
-	get_tree().paused = true
+	if get_tree().paused:
+		come_back()
+		BLUR_NODE.hide()
+		PAUSE_NODE.hide()
+		get_tree().paused = false
+	else:
+		BLUR_NODE.show()
+		PAUSE_NODE.show()
+		get_tree().paused = true
 
 
 func _on_Resume_pressed():

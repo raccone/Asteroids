@@ -28,10 +28,14 @@ func _process(delta):
 		offset = Vector2(
 			rand_range(amplitude, -amplitude) * damping,
 			rand_range(amplitude, -amplitude) * damping)
+	else:
+		offset = Vector2.ZERO
 	if GLOBALS.screen_flash:
 		var alpha = ease(PLAYERTIMER_NODE.time_left / PLAYERTIMER_NODE.wait_time, EASE)/2
 		COLOR_NODE.color = color
 		COLOR_NODE.color.a = alpha
+	else:
+		COLOR_NODE.hide()
 #	COLOR_NODE.color = Color(color.r, color.g, color.b, alpha)
 
 

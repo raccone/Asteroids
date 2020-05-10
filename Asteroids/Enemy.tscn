@@ -62,10 +62,12 @@ one_shot = true
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+bus = "SFX"
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 pitch_scale = 1.5
+bus = "SFX"
 [connection signal="hit" from="." to="." method="_on_Enemy_hit"]
 [connection signal="stop" from="." to="." method="_on_Enemy_stop"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

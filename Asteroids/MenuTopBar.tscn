@@ -106,6 +106,7 @@ custom_fonts/font = SubResource( 3 )
 align = 2
 
 [node name="PauseButton" type="Button" parent="LevelCounter/HBoxContainer"]
+pause_mode = 2
 margin_left = 1149.0
 margin_right = 1240.0
 margin_bottom = 41.0
